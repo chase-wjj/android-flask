@@ -1,0 +1,50 @@
+description: 上传健康日志
+parameters:
+  - name: title
+    in: body
+    type: string
+    required: true
+    example: '12月1日健康日志'
+  - name: abstract
+    in: body
+    type: string
+    required: true
+    example: '今天感觉不错'
+    description: '概要'
+  - name: diya
+    in: body
+    type: string
+    required: true
+    example: '110'
+    description: '最长20个字符'
+  - name: gaoya
+    in: body
+    type: string
+    required: true
+    example: '110'
+    description: '最长20个字符'
+  - name: xuetang
+    in: body
+    type: string
+    required: true
+    example: '110'
+    description: '最长20个字符'
+  - name: xuezhi
+    in: body
+    type: string
+    required: true
+    example: '110'
+    description: '最长20个字符'
+  - name: content
+    in: body
+    type: string
+    required: true
+    example: '今天早上起床感觉头不痛不晕，身体很好'
+    description: '最长200个字符'
+responses:
+  201:
+    description: 成功
+  401:
+    description: 未登录
+  500:
+    description: 上传失败

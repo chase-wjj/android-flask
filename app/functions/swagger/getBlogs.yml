@@ -1,0 +1,8 @@
+description: 获取所有列表
+responses:
+  200:
+    description: 成功，并返回一个json，格式为{'blogList':[所有帖子字典的列表]}。其中，帖子字典为{id:..., username:..., blog_title:..., blog_content:..., summary:..., labels:[...（标签数组）], time:...}
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 获取失败

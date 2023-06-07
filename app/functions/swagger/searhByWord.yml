@@ -1,0 +1,12 @@
+description: 在百度百科中搜索词语,并返回对应词条中的文本
+parameters:
+  - name: search_word
+    in: body
+    type: string
+    required: true
+    example: '钙拮抗剂'
+responses:
+  200:
+    description: 成功, 并返回json, 200, json的格式为{'message':[所有好友用户名列表]}
+  500:
+    description: 发送失败, 并返json, 500, json的格式为{'message':[所有好友用户名列表]}

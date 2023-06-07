@@ -1,0 +1,19 @@
+description: 为当前已登录用户发送好友申请
+parameters:
+  - name: friend_name
+    in: body
+    type: string
+    required: true
+    example: 'Li Hua'
+  - name: remark
+    in: body
+    type: string
+    required: true
+    example: '你好，我是病友Alice，想加你好友交流病情（最多50字）'
+responses:
+  201:
+    description: 成功
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 添加好友失败

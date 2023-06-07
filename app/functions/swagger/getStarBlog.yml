@@ -1,0 +1,8 @@
+description: 获取加精帖子id
+responses:
+  200:
+    description: 成功，并返回一个json，格式为{'id':被加精的帖子id}
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 获取失败

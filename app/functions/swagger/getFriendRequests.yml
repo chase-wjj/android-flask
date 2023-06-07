@@ -1,0 +1,8 @@
+description: 获取当前已登录用户的好友申请
+responses:
+  200:
+    description: 成功，并返回一个json，格式为{'friendRequestList':[{所有好友申请用户名与备注组成的字典}列表]}，其中字典的结构为{'friend_name':..., 'remark':...}
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 获取失败

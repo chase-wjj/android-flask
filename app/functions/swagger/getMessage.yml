@@ -1,0 +1,8 @@
+description: 获取当前登录用户的新信息
+responses:
+  200:
+    description: 成功，并返回一个json，格式为{'message_list':[...](消息组成的列表)}，其中列表中的每条消息的格式为{'sender':..., 'receiver':..., 'content':..., 'time':...}
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 消息发送失败

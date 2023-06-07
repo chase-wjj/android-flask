@@ -1,0 +1,19 @@
+description: 为当前已登录用户添加定时提醒
+parameters:
+  - name: schedule_time
+    in: body
+    type: string
+    required: true
+    example: 'hh:mm:ss'
+  - name: schedule_message
+    in: body
+    type: string
+    required: true
+    example: '阿莫西林'
+responses:
+  201:
+    description: 成功
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 添加提醒失败

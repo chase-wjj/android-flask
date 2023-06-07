@@ -1,0 +1,14 @@
+description: 删除当前已登录用户的分组（并同时把该分组中的好友转移到default分组中。）（不能删除default分组）
+parameters:
+  - name: group_name
+    in: body
+    type: string
+    required: true
+    example: '亲人'
+responses:
+  200:
+    description: 成功
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 删除失败

@@ -1,0 +1,8 @@
+description: 获取当前登录用户的所有health aid
+responses:
+  200:
+    description: 成功，并返回一个json，格式为{'health_aid':[该用户所有health aid字典的列表]}。其中，health aid字典为{title:..., abstract:..., diya:..., gaoya:..., xuetang:..., xuezhi:..., content:..., time:..., id:..., abnormal:{异常项字典}}，其中，异常项字典的结构为{异常项:异常说明}，例如，{'xuetang':'too high'}
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 获取失败

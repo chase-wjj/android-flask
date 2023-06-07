@@ -1,0 +1,14 @@
+description: 为当前已登录用户添加新好友分组
+parameters:
+  - name: group_name
+    in: body
+    type: string
+    required: true
+    example: '亲人'
+responses:
+  201:
+    description: 成功
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 添加失败

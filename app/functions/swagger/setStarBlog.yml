@@ -1,0 +1,14 @@
+description: 设置加精（仅限test账号）
+parameters:
+  - name: blog_id
+    in: body
+    type: integer
+    required: true
+    example: 1
+responses:
+  201:
+    description: 成功
+  401:
+    description: 权限不足
+  500:
+    description: 加精失败

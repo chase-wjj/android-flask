@@ -1,0 +1,14 @@
+description: 获取某帖子下的所有评论（根据帖子id获取）
+parameters:
+  - name: blog_id
+    in: path
+    type: integer
+    required: true
+    example: 1
+responses:
+  200:
+    description: 成功，并返回一个json，格式为{'commentList':[该帖子下所有评论字典的列表]}。其中，帖子字典为{id:..., blog_id:..., username:..., content:..., time:...}
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 获取失败

@@ -1,0 +1,6 @@
+description: 登出当前已登录用户
+responses:
+  401:
+    description: 成功登出
+  500:
+    description: 登出失败

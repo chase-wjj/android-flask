@@ -1,0 +1,12 @@
+description: 向指定用户的邮箱发送验证码
+parameters:
+  - name: username
+    in: body
+    type: string
+    required: true
+    example: 'LiHua'
+responses:
+  200:
+    description: 成功
+  500:
+    description: 发送失败

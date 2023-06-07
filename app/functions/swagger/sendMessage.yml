@@ -1,0 +1,19 @@
+description: 向指定好友发送信息
+parameters:
+  - name: friend_name
+    in: body
+    type: string
+    required: true
+    example: 'Li Hua'
+  - name: content
+    in: body
+    type: string
+    required: true
+    example: '在嘛？借点钱'
+responses:
+  201:
+    description: 成功
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 消息发送失败（并返回具体错误信息）

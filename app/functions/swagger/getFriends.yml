@@ -1,0 +1,8 @@
+description: 获取当前已登录用户的好友列表
+responses:
+  200:
+    description: 成功，并返回一个json，格式为{'friendList':{分组1:[{'username':好友1, status:...(bool，0代表未登录，1代表登录)}, ...], 分组2:[{'username':好友k, status:...(bool，0代表未登录，1代表登录)}, ...], ...}}
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 获取失败

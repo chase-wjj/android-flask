@@ -1,0 +1,14 @@
+description: 获取某帖子（根据帖子id获取）
+parameters:
+  - name: blog_id
+    in: path
+    type: integer
+    required: true
+    example: 1
+responses:
+  200:
+    description: 成功，并返回一个json，格式为{id:..., username:..., blog_title:..., blog_content:..., summary:..., labels:[...(labels列表，每一个表项都是一个label)], time:...}
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 获取失败（同时返回具体错误信息）

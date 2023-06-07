@@ -1,0 +1,27 @@
+description: 注册新用户
+parameters:
+  - name: username
+    in: body
+    type: string
+    required: true
+    example: 'Li Hua'
+  - name: password
+    in: body
+    type: string
+    required: true
+    example: 'woshilihua'
+  - name: email
+    in: body
+    type: string
+    required: true
+    example: 'LiHua@foxmail.com'
+  - name: verify_code
+    in: body
+    type: string
+    required: true
+    example: '123456'
+responses:
+  201:
+    description: 成功
+  500:
+    description: 注册失败

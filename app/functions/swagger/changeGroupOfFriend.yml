@@ -1,0 +1,19 @@
+description: 修改当前已登录用户的某个好友所在的分组
+parameters:
+  - name: friend_name
+    in: body
+    type: string
+    required: true
+    example: 'Li Hua'
+  - name: group_name
+    in: body
+    type: string
+    required: true
+    example: '亲人'
+responses:
+  201:
+    description: 成功
+  401:
+    description: 当前处于未登录状态
+  500:
+    description: 修改失败（并返回失败原因）
