@@ -63,11 +63,10 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True,
                    autoincrement=True, doc="comment_id")
-    blog_id = db.Column(db.Integer, doc="blog_id")
+    blog_id = db.Column(db.String(32), doc="blog_id")
     username = db.Column(db.String(32), doc="账号")
     content = db.Column(db.String(200), doc="content")
-
-    time = db.Column(db.DateTime, doc="创建时间")
+    time = db.Column(db.String(32), doc="创建时间")
 
 
 class ChatMessage(db.Model):

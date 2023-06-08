@@ -72,11 +72,10 @@ def get_my_blogs():
 
 
 @blog_bp.route("/publishComment/", methods=['POST'])
-@login_required
 @swag_from('swagger/publishComment.yml')
 def publish_comment():
     body_data = request.json
-    username = identify(request.headers.get("Authorization", default=None))
+    username = body_data['username']
     blog_id = body_data['blog_id']
     content = body_data['content']
     status, message = db_add_comment(username, blog_id, content)
@@ -100,10 +99,12 @@ def delete_comment():
         return message, 500
 
 
-@blog_bp.route("/getComments/<blog_id>/", methods=['GET'])
-@login_required
+@blog_bp.route("/getComments/", methods=['POST'])
 @swag_from('swagger/getComments.yml')
-def get_comments(blog_id):
+def get_comments():
+    body_data = request.json
+    print(body_data)
+    blog_id = body_data['blog_id']
     status, comments = db_get_all_comments_by_blog_id(blog_id)
     if status:
         return jsonify({'commentList': comments}), 200

@@ -93,7 +93,7 @@ def db_add_blog(username, blog_title, blog_content):
         now = datetime.datetime.now()
         current_datetime_str = now.strftime('%Y-%m-%d %H:%M:%S')
         blog = Blog(username=username, blog_title=blog_title, blog_content=blog_content,
-                    time=now,like=0)
+                    time=current_datetime_str,like=0)
         db.session.add(blog)
         db.session.commit()
         return True, str(now)[:-7]
@@ -370,11 +370,13 @@ def db_check_verify_code(verify_code, email):
 def db_add_comment(username, blog_id, content):
     try:
         now = datetime.datetime.now()
+        current_datetime_str = now.strftime('%Y-%m-%d %H:%M:%S')
         cursor = db.session.execute("SELECT id FROM blog WHERE id = '" + str(blog_id) + "';")
         for _ in cursor:
-            comment = Comment(username=username, content=content, blog_id=blog_id, time=now)
+            comment = Comment(username=username, content=content, blog_id=blog_id, time=current_datetime_str)
             db.session.add(comment)
             db.session.commit()
+            print("add success")
             return True, 'success'
         return False, 'no such blog'
     except Exception as e:
@@ -404,8 +406,8 @@ def db_get_all_comments_by_blog_id(blog_id):
         comments = []
         cursor = db.session.execute("SELECT * FROM comment WHERE blog_id = '" + str(blog_id) + "';")
         for cur in cursor:
-            comment = {'id': str(cur[0]), 'blog_id': cur[1], 'username': cur[2], 'content': cur[3],
-                       'time': str(cur[4])[:-7]}
+            comment = {'id': str(cur[0]), 'blog_id': str(cur[1]), 'username': cur[2], 'content': cur[3],
+                       'time': str(cur[4])}
             comments.append(comment)
         return True, comments
     except Exception as e:
