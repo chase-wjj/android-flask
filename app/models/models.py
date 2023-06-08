@@ -44,8 +44,8 @@ class Blog(db.Model):
     username = db.Column(db.String(32), doc="账号")
     blog_title = db.Column(db.String(200), doc="blog_title")
     blog_content = db.Column(db.String(20000), doc="blog_content")  # 暂时只支持最多10000字的文章
-    labels = db.Column(db.String(40), doc="labels")  # 20字标签
-    time = db.Column(db.DateTime, doc="创建时间")
+    time = db.Column(db.String(32), doc="创建时间")
+    like = db.Column(db.Integer,doc="点赞数")
 
 
 class VerifyCode(db.Model):

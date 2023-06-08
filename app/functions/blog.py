@@ -17,8 +17,7 @@ def publish_blog():
     username = body_data['username']
     blog_title = body_data['blog_title']
     blog_content = body_data['blog_content']
-    labels = body_data['labels']
-    status, message = db_add_blog(username, blog_title, blog_content,  labels)
+    status, message = db_add_blog(username, blog_title, blog_content)
     if status:
         return jsonify({'time': message}), 201
     else:
@@ -46,7 +45,7 @@ def get_blogs():
     if status:
         return jsonify({'blogList': blogs}), 200
     else:
-        return status, 500
+        return jsonify({'error': 'Failed to retrieve blogs'}), 500
 
 
 @blog_bp.route("/getBlogByID/<blog_id>/", methods=['GET'])

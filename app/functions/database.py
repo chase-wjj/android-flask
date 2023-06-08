@@ -88,11 +88,12 @@ def db_get_email_by_username(username):
         return False
 
 
-def db_add_blog(username, blog_title, blog_content,  labels):
+def db_add_blog(username, blog_title, blog_content):
     try:
         now = datetime.datetime.now()
-        blog = Blog(username=username, blog_title=blog_title, blog_content=blog_content,  labels=labels,
-                    time=now)
+        current_datetime_str = now.strftime('%Y-%m-%d %H:%M:%S')
+        blog = Blog(username=username, blog_title=blog_title, blog_content=blog_content,
+                    time=now,like=0)
         db.session.add(blog)
         db.session.commit()
         return True, str(now)[:-7]
@@ -125,7 +126,7 @@ def db_get_all_blogs():
         cursor = db.session.execute("SELECT * FROM blog;")
         for cur in cursor:
             blog = {'id': str(cur[0]), 'username': cur[1], 'blog_title': cur[2], 'blog_content': cur[3],
-                    'summary': cur[4], 'labels': "", 'time': str(cur[6])[:-7]}
+                    'time': str(cur[4]),'like': str(cur[5])}
             blogs.append(blog)
         return True, blogs
     except Exception as e:
