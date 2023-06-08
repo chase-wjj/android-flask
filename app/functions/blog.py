@@ -11,7 +11,6 @@ blog_bp = Blueprint("blog", __name__)
 
 # 发表博客
 @blog_bp.route("/publishBlog/", methods=['POST'])
-@login_required
 @swag_from('swagger/publishBlog.yml')
 def publish_blog():
     body_data = request.json
@@ -41,7 +40,6 @@ def delete_blog():
 
 
 @blog_bp.route("/getBlogs/", methods=['GET'])
-@login_required
 @swag_from('swagger/getBlogs.yml')
 def get_blogs():
     status, blogs = db_get_all_blogs()

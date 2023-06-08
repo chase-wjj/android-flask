@@ -113,11 +113,11 @@ def create_new_account():
     return 'failed', 500
 
 
-@account_bp.route("/getAccountInfo/", methods=['GET'])
-@login_required
+@account_bp.route("/getAccountInfo/", methods=['POST'])
 @swag_from('swagger/getAccountInfo.yml')
 def get_account_info():
-    username = identify(request.headers.get("Authorization", default=None))
+    body_data = request.json
+    username = body_data['username']
     status, result = db_get_account_info(username)
     if status:
         return jsonify(result), 200
@@ -125,12 +125,11 @@ def get_account_info():
 
 
 @account_bp.route("/changeAccountInfo/", methods=['POST'])
-@login_required
 @swag_from('swagger/changeAccountInfo.yml')
 def change_account_info():
     # 修改账号信息，成功则返回 'success' 及201，否则打印错误信息到后端控制台并返回给前端
     body_data = request.json
-    username = identify(request.headers.get("Authorization", default=None))
+    username = body_data['username']
 
     if 'mobile' in body_data and body_data['mobile'] != '':
         mobile = body_data['mobile']

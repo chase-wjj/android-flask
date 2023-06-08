@@ -125,7 +125,7 @@ def db_get_all_blogs():
         cursor = db.session.execute("SELECT * FROM blog;")
         for cur in cursor:
             blog = {'id': str(cur[0]), 'username': cur[1], 'blog_title': cur[2], 'blog_content': cur[3],
-                    'summary': cur[4], 'labels': cur[5].split(' '), 'time': str(cur[6])[:-7]}
+                    'summary': cur[4], 'labels': "", 'time': str(cur[6])[:-7]}
             blogs.append(blog)
         return True, blogs
     except Exception as e:
