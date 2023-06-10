@@ -189,11 +189,12 @@ def login():
     return 'failed', 401
 
 
-@account_bp.route('/logout/', methods=['GET'])
+@account_bp.route('/logout/', methods=['POST'])
 @swag_from('swagger/logout.yml')
-@login_required
 def logout():
-    status, message = db_delete_logged_in_user(identify(request.headers.get("Authorization", default=None)))
+    body_data = request.json
+    username = body_data['username']
+    status, message = db_delete_logged_in_user(username)
     if not status:
         return message, 500
     return 'success', 401  # 直接将401发给前端，让前端收到后自动清除jwt信息

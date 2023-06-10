@@ -9,10 +9,9 @@ chat_bp = Blueprint("chat", __name__)
 
 @chat_bp.route('/sendMessage/', methods=['POST'])
 @swag_from('swagger/sendMessage.yml')
-@login_required
 def send_message():
     body_data = request.json
-    username = identify(request.headers.get("Authorization", default=None))
+    username = body_data['user_name']
     friend_name = body_data['friend_name']
     content = body_data['content']
     status, message = db_add_message(username, friend_name, content)
@@ -22,11 +21,11 @@ def send_message():
         return message, 500
 
 
-@chat_bp.route('/getMessage/', methods=['GET'])
+@chat_bp.route('/getMessage/', methods=['POST'])
 @swag_from('swagger/getMessage.yml')
-@login_required
 def get_message():
-    username = identify(request.headers.get("Authorization", default=None))
+    body_data = request.json
+    username = body_data['user_name']
     status, message = db_get_message_by_username(username)
     if status:
         return jsonify({'message_list': message}), 200

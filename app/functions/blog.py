@@ -59,10 +59,10 @@ def get_blog_by_id(blog_id):
         return status, 500
 
 
-@blog_bp.route("/getMyBlogs/", methods=['GET'])
-@login_required
+@blog_bp.route("/getMyBlogs/", methods=['POST'])
 @swag_from('swagger/getMyBlogs.yml')
 def get_my_blogs():
+    body_data = request.json
     username = body_data['username']
     status, blogs = db_get_my_all_blogs(username)
     if status:
@@ -103,7 +103,6 @@ def delete_comment():
 @swag_from('swagger/getComments.yml')
 def get_comments():
     body_data = request.json
-    print(body_data)
     blog_id = body_data['blog_id']
     status, comments = db_get_all_comments_by_blog_id(blog_id)
     if status:

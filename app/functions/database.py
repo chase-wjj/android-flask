@@ -153,7 +153,7 @@ def db_get_my_all_blogs(username):
         cursor = db.session.execute("SELECT * FROM blog WHERE username = '" + username + "';")
         for cur in cursor:
             blog = {'id': str(cur[0]), 'username': cur[1], 'blog_title': cur[2], 'blog_content': cur[3],
-                    'summary': cur[4], 'labels': cur[5].split(' '), 'time': str(cur[6])[:-7]}
+                    'time': str(cur[4]),'like': str(cur[5])}
             blogs.append(blog)
         return True, blogs
     except Exception as e:
@@ -376,7 +376,6 @@ def db_add_comment(username, blog_id, content):
             comment = Comment(username=username, content=content, blog_id=blog_id, time=current_datetime_str)
             db.session.add(comment)
             db.session.commit()
-            print("add success")
             return True, 'success'
         return False, 'no such blog'
     except Exception as e:
@@ -418,15 +417,6 @@ def db_get_all_comments_by_blog_id(blog_id):
 def db_add_message(username, friend_name, content):
     try:
         now = datetime.datetime.now()
-        friend_list = []
-        cursor = db.session.execute("SELECT username_2 FROM friendship WHERE username_1 = '" + username + "';")
-        for cur in cursor:
-            friend_list.append(cur[0])
-        cursor = db.session.execute("SELECT username_1 FROM friendship WHERE username_2 = '" + username + "';")
-        for cur in cursor:
-            friend_list.append(cur[0])
-        if friend_name not in friend_list:
-            return False, 'no such friend'
         chat_message = ChatMessage(username_1=username, username_2=friend_name, content=content, time=now)
         db.session.add(chat_message)
         db.session.commit()
